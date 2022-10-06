@@ -1,0 +1,13 @@
+//
+//  Configuration-Development.xcconfig
+//  TestProject
+//
+//  Created by Artem Kvasnetskyi on 06.10.2022.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+APP_ENVIRONMENT = development
+APP_NAME = Test Project Development
+APP_BUNDLE_ID = com.kvasnetskyi.TestProject.dev
