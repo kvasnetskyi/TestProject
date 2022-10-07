@@ -8,5 +8,6 @@
 import Foundation
 
 protocol AppConfigurationProtocol {
+    var bundle: Bundle { get }
     var environment: AppEnvironment { get }
 }

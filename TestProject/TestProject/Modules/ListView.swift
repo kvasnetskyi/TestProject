@@ -8,11 +8,11 @@
 import SwiftUI
 import Combine
 
-struct ListView<Factory: ModuleFactoryProtocol>: View where Factory.Destination == MainDestination {
+struct ListView<Destination: Hashable, Factory: ModuleFactoryProtocol>: View where Factory.Destination == Destination {
     let moduleFactory: Factory
     
     @StateObject var viewModel: ListViewModel
-    @StateObject var stackStorage: StackStorage<MainDestination>
+    @StateObject var stackStorage: StackStorage<Destination>
     
     var body: some View {
         NavigationStack(path: $stackStorage.stack) {
@@ -21,7 +21,7 @@ struct ListView<Factory: ModuleFactoryProtocol>: View where Factory.Destination 
             }
             .subscribeToRenderingStates($viewModel)
             .navigationDestination(
-                for: MainDestination.self
+                for: Destination.self
             ) { destination in
                 moduleFactory.build(destination)
             }

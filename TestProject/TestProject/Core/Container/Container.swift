@@ -9,13 +9,23 @@ import Foundation
 import Swinject
 
 protocol AppContainerProtocol: AnyObject {
-    
+    var appConfiguration: AppConfigurationProtocol { get }
+    var jsonBundleService: JSONBundleServiceProtocol { get }
+    var imageLoaderService: ImageLoaderServiceProtocol { get }
+    var animalsService: AnimalsServiceProtocol { get }
 }
 
 final class AppContainer: AppContainerProtocol {
+    // MARK: - Internal Properties
+    var appConfiguration: AppConfigurationProtocol { resolve() }
+    var jsonBundleService: JSONBundleServiceProtocol { resolve() }
+    var imageLoaderService: ImageLoaderServiceProtocol { resolve() }
+    var animalsService: AnimalsServiceProtocol { resolve() }
+    
     // MARK: - Private Properties
     private let swinject = Container()
     
+    // MARK: - Init
     init() {
         registerServices()
     }
@@ -24,10 +34,46 @@ final class AppContainer: AppContainerProtocol {
 // MARK: - Private Methods
 private extension AppContainer {
     func registerServices() {
-        
+        registerAppConfiguration()
+        registerJSONBundleService()
+        registerImageLoaderService()
+        registerAnimalsService()
     }
     
     func resolve<T>() -> T {
         swinject.resolve(T.self)!
+    }
+    
+    func registerAppConfiguration() {
+        swinject.register(AppConfigurationProtocol.self) { _ in
+            AppConfiguration(bundle: .main)
+        }
+        .inObjectScope(.container)
+    }
+    
+    func registerJSONBundleService() {
+        swinject.register(JSONBundleServiceProtocol.self) { resolver in
+            let configuration = resolver.resolve(AppConfigurationProtocol.self)!
+            
+            return JSONBundleService(
+                configuration.bundle,
+                .init()
+            )
+        }
+    }
+    
+    func registerImageLoaderService() {
+        swinject.register(ImageLoaderServiceProtocol.self) { _ in
+            ImageLoaderService()
+        }
+        .inObjectScope(.weak)
+    }
+    
+    func registerAnimalsService() {
+        swinject.register(AnimalsServiceProtocol.self) { resolver in
+            AnimalsService(
+                resolver.resolve(JSONBundleServiceProtocol.self)!
+            )
+        }
     }
 }

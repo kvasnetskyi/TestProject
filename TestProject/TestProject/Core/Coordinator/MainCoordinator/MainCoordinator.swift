@@ -18,7 +18,6 @@ final class MainCoordinator: Coordinator {
     // MARK: - Private Properties
     lazy private var factory: MainModuleFactory = {
         let container = MainModuleFactory(container)
-        container.transitionHandler = self
         
         return container
     }()
@@ -29,7 +28,8 @@ final class MainCoordinator: Coordinator {
 // MARK: - Internal Methods
 extension MainCoordinator {
     func start() -> AnyView {
-        factory.buildRoot(stackStorage)
+        // TODO: Think about how we can show the root in a different coordinators
+        factory.buildRoot(stackStorage, self)
     }
     
     func finish() {
@@ -37,29 +37,9 @@ extension MainCoordinator {
     }
 }
 
-// MARK: - TransitionHandler
-extension MainCoordinator: TransitionHandler {
-    func observe<T: Transition>(_ transition: AnyPublisher<T, Never>) {
-        switch transition {
-        case is AnyPublisher<ListTransition, Never>:
-            observe(transition as! AnyPublisher<ListTransition, Never>)
-            
-        default:
-            debugPrint("Transition not supported")
-        }
-    }
-}
-
-// MARK: - Private Methods
-private extension MainCoordinator {
-    func observe(_ transition: AnyPublisher<ListTransition, Never>) {
-        transition
-            .sink { [unowned self] transition in
-                switch transition {
-                case .testTransition(let text):
-                    stackStorage.stack.append(.nextScreen(text: text))
-                }
-            }
-            .store(in: &subscriptions)
+// MARK: - ListCoordintor
+extension MainCoordinator: ListCoordintor {
+    func openDetails() {
+        stackStorage.stack.append(.nextScreen(text: "Some Text"))
     }
 }

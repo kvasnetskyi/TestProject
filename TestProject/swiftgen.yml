@@ -3,10 +3,17 @@ output_dir: TestProject/Resources/Generated
 strings:
   inputs: Base.lproj
   outputs:
-    templateName: structured-swift5
-    output: Localization.swift
-    params:
-      enumName: Localization
+    - templateName: structured-swift5
+      output: Localization.swift
+      params:
+        enumName: Localization
+xcassets:
+  - inputs: Assets.xcassets
+    outputs:
+      templateName: swift5
+      output: Assets.swift
+      params:
+        enumName: Assets
 
 ## Note: all of the config entries below are just examples with placeholders. Be sure to edit and adjust to your needs when uncommenting.
 
@@ -65,4 +72,4 @@ strings:
 ## …
 ##
 ## For more info, use `swiftgen config doc` to open the full documentation on GitHub.
-## https://github.com/SwiftGen/SwiftGen/tree/6.5.1/Documentation/
+## https://github.com/SwiftGen/SwiftGen/tree/6.6.2/Documentation/

@@ -9,25 +9,22 @@ import Combine
 import SwiftUI
 
 final class MainModuleFactory {
-    // MARK: - Internal Properties
-    weak var transitionHandler: TransitionHandler?
-    
     // MARK: - Private Properties
     private let container: AppContainerProtocol
     
     // MARK: - Init
-    init(
-        _ container: AppContainerProtocol
-    ) {
+    init(_ container: AppContainerProtocol) {
         self.container = container
     }
 }
 
-// MARK: - ModuleFactoryProtocol
-extension MainModuleFactory: ModuleFactoryProtocol {
-    func buildRoot(_ stackStorage: StackStorage<MainDestination>) -> AnyView {
-        let viewModel = ListViewModel()
-        transitionHandler?.observe(viewModel.transition)
+// MARK: - Internal Properties
+extension MainModuleFactory {
+    func buildRoot(
+        _ stackStorage: StackStorage<MainDestination>,
+        _ coordinator: ListCoordintor
+    ) -> AnyView {
+        let viewModel = ListViewModel(coordinator)
         
         return ListView(
             moduleFactory: self,
@@ -36,7 +33,10 @@ extension MainModuleFactory: ModuleFactoryProtocol {
         )
         .eraiseToAnyView()
     }
-    
+}
+
+// MARK: - ModuleFactoryProtocol
+extension MainModuleFactory: ModuleFactoryProtocol {
     func build(_ destination: MainDestination) -> AnyView {
         switch destination {
         case .nextScreen(let text):

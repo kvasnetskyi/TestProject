@@ -9,13 +9,15 @@ import Foundation
 import Combine
 
 final class ListViewModel: BaseViewModel {
-    lazy var transition = transitionSubject.eraseToAnyPublisher()
+    // MARK: - Private Properties
+    private weak var coordinator: ListCoordintor?
     
-    private let transitionSubject = PassthroughSubject<ListTransition, Never>()
+    // MARK: - Init
+    init(_ coordinator: ListCoordintor) {
+        self.coordinator = coordinator
+    }
     
     func pushSmth() {
-        transitionSubject.send(
-            .testTransition(text: "Test Transition")
-        )
+        coordinator?.openDetails()
     }
 }

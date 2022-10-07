@@ -8,3 +8,7 @@
 
 // MARK: - General
 "OK" = "OK";
+
+// MARK: - Errors
+"Error.Bundle.FileNotFound" = "The file could not be found.";
+"Error.Decoding" = "Failed to decode file.";

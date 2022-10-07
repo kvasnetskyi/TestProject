@@ -14,7 +14,15 @@ internal enum Localization {
   ///   TestProject
   /// 
   ///   Created by Artem Kvasnetskyi on 06.10.2022.
-  internal static let ok = Localization.tr("Localizable", "Ok", fallback: "Ok")
+  internal static let ok = Localization.tr("Localizable", "OK", fallback: "OK")
+  internal enum Error {
+    /// Failed to decode file.
+    internal static let decoding = Localization.tr("Localizable", "Error.Decoding", fallback: "Failed to decode file.")
+    internal enum Bundle {
+      /// The file could not be found.
+      internal static let fileNotFound = Localization.tr("Localizable", "Error.Bundle.FileNotFound", fallback: "The file could not be found.")
+    }
+  }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

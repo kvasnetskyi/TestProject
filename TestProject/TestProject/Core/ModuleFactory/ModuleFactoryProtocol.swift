@@ -11,10 +11,5 @@ import SwiftUI
 protocol ModuleFactoryProtocol: AnyObject {
     associatedtype Destination: Hashable
     
-    func buildRoot(_ stackStorage: StackStorage<Destination>) -> AnyView
     func build(_ destination: Destination) -> AnyView
-}
-
-protocol TransitionHandler: AnyObject {
-    func observe<T: Transition>(_ transition: AnyPublisher<T, Never>)
 }
