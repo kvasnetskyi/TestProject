@@ -20,7 +20,7 @@ final class AnimalsService {
 
 // MARK: - AnimalsServiceProtocol
 extension AnimalsService: AnimalsServiceProtocol {
-    func getAnimals() -> AnyPublisher<Animal, AppError> {
+    func getAnimals() -> AnyPublisher<[Animal], AppError> {
         bundleService.getModel(name: Constants.fileName)
     }
 }

@@ -15,6 +15,10 @@ internal enum Localization {
   /// 
   ///   Created by Artem Kvasnetskyi on 06.10.2022.
   internal static let ok = Localization.tr("Localizable", "OK", fallback: "OK")
+  internal enum AnimalRow {
+    /// Premium
+    internal static let premium = Localization.tr("Localizable", "AnimalRow.Premium", fallback: "Premium")
+  }
   internal enum Error {
     /// Failed to decode file.
     internal static let decoding = Localization.tr("Localizable", "Error.Decoding", fallback: "Failed to decode file.")

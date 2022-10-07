@@ -24,7 +24,8 @@ extension MainModuleFactory {
         _ stackStorage: StackStorage<MainDestination>,
         _ coordinator: ListCoordintor
     ) -> AnyView {
-        let viewModel = ListViewModel(coordinator)
+        let model = ListModel(container.animalsService)
+        let viewModel = ListViewModel(coordinator, model)
         
         return ListView(
             moduleFactory: self,

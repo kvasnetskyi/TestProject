@@ -11,7 +11,6 @@ import Swinject
 protocol AppContainerProtocol: AnyObject {
     var appConfiguration: AppConfigurationProtocol { get }
     var jsonBundleService: JSONBundleServiceProtocol { get }
-    var imageLoaderService: ImageLoaderServiceProtocol { get }
     var animalsService: AnimalsServiceProtocol { get }
 }
 
@@ -19,7 +18,6 @@ final class AppContainer: AppContainerProtocol {
     // MARK: - Internal Properties
     var appConfiguration: AppConfigurationProtocol { resolve() }
     var jsonBundleService: JSONBundleServiceProtocol { resolve() }
-    var imageLoaderService: ImageLoaderServiceProtocol { resolve() }
     var animalsService: AnimalsServiceProtocol { resolve() }
     
     // MARK: - Private Properties
@@ -36,7 +34,6 @@ private extension AppContainer {
     func registerServices() {
         registerAppConfiguration()
         registerJSONBundleService()
-        registerImageLoaderService()
         registerAnimalsService()
     }
     
@@ -60,13 +57,6 @@ private extension AppContainer {
                 .init()
             )
         }
-    }
-    
-    func registerImageLoaderService() {
-        swinject.register(ImageLoaderServiceProtocol.self) { _ in
-            ImageLoaderService()
-        }
-        .inObjectScope(.weak)
     }
     
     func registerAnimalsService() {

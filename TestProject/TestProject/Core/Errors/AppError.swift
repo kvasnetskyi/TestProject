@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum AppError: AppErrorProtocol {
+enum AppError: Error {
     case bundleFileNotFound
     case decoding
-    case custom(_ title: String)
+    case custom(_ description: String)
     
-    var title: String {
+    var description: String {
         switch self {
         case .bundleFileNotFound:
             return Localization.Error.Bundle.fileNotFound
@@ -20,8 +20,8 @@ enum AppError: AppErrorProtocol {
         case .decoding:
             return Localization.Error.decoding
             
-        case .custom(let title):
-            return title
+        case .custom(let description):
+            return description
         }
     }
 }

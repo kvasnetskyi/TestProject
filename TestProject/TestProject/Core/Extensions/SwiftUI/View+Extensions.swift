@@ -12,22 +12,21 @@ extension View {
     func subscribeToRenderingStates<ViewModel: ViewModelProtocol>(
         _ viewModel: ObservedObject<ViewModel>.Wrapper
     ) -> some View {
-        ZStack {
-            self
-            
-            if viewModel.isLoaderPresent.wrappedValue {
-                LoaderView()
+        self
+            .overlay {
+                if viewModel.isLoaderPresent.wrappedValue {
+                    LoaderView()
+                }
             }
-        }
-        .alert(
-            viewModel.alertModel.alertMessage.wrappedValue ?? String(),
-            isPresented: viewModel.alertModel.isAlertPresent
-        ) {
-            Button(Localization.ok) {
-                viewModel.alertModel.isAlertPresent.wrappedValue = false
-                viewModel.alertModel.alertMessage.wrappedValue = nil
+            .alert(
+                viewModel.alertModel.alertMessage.wrappedValue ?? String(),
+                isPresented: viewModel.alertModel.isAlertPresent
+            ) {
+                Button(Localization.ok) {
+                    viewModel.alertModel.isAlertPresent.wrappedValue = false
+                    viewModel.alertModel.alertMessage.wrappedValue = nil
+                }
             }
-        }
     }
     
     func eraiseToAnyView() -> AnyView {

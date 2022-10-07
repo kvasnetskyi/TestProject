@@ -12,3 +12,6 @@
 // MARK: - Errors
 "Error.Bundle.FileNotFound" = "The file could not be found.";
 "Error.Decoding" = "Failed to decode file.";
+
+// MARK: - AnimalRow
+"AnimalRow.Premium" = "Premium";
