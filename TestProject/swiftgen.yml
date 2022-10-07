@@ -1,14 +1,14 @@
 input_dir: TestProject/Resources
 output_dir: TestProject/Resources/Generated
 strings:
-  inputs: Base.lproj
+  inputs: TestProject/Resources/Base.lproj
   outputs:
     - templateName: structured-swift5
       output: Localization.swift
       params:
         enumName: Localization
 xcassets:
-  - inputs: Assets.xcassets
+  - inputs: TestProject/Resources/Assets.xcassets
     outputs:
       templateName: swift5
       output: Assets.swift

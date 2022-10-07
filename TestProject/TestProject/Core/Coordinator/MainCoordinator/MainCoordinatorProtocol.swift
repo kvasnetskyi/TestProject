@@ -8,5 +8,9 @@
 import Foundation
 
 protocol ListCoordintor: AnyObject {
-    func openDetails()
+    func openDetails(category: String, _ content: [AnimalContent])
+}
+
+protocol DetailsCoordinator: AnyObject, Hashable {
+    func popDetailsModule()
 }

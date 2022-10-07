@@ -32,6 +32,9 @@ struct ListView<ViewModel: ListViewModelProtocol, Factory: ModuleFactoryProtocol
                             )
                         )
                         .frame(height: Constants.rowHeight)
+                        .onTapGesture {
+                            viewModel.rowTapped(animal.wrappedValue)
+                        }
                 }
                 .scrollContentBackground(.hidden)
                 .edgesIgnoringSafeArea([.leading, .trailing])

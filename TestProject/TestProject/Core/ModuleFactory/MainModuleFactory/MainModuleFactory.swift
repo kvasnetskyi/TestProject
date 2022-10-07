@@ -40,16 +40,26 @@ extension MainModuleFactory {
 extension MainModuleFactory: ModuleFactoryProtocol {
     func build(_ destination: MainDestination) -> AnyView {
         switch destination {
-        case .nextScreen(let text):
-            return getNextScreen(text)
+        case let .animalDetails(category, content, coordinator):
+            return getAnimalDetails(category: category, content, coordinator)
         }
     }
 }
 
 // MARK: - Private Methods
 private extension MainModuleFactory {
-    func getNextScreen(_ text: String) -> AnyView {
-        Text(text)
+    func getAnimalDetails<Coordinator: DetailsCoordinator>(
+        category: String,
+        _ content: [AnimalContent],
+        _ coordinator: Coordinator
+    ) -> AnyView {
+        let viewModel = DetailsViewModel(
+            category: category,
+            content,
+            coordinator
+        )
+        
+        return DetailsView(viewModel: viewModel)
             .eraiseToAnyView()
     }
 }

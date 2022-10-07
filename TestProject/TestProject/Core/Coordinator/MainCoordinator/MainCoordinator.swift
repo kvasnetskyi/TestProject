@@ -28,7 +28,6 @@ final class MainCoordinator: Coordinator {
 // MARK: - Internal Methods
 extension MainCoordinator {
     func start() -> AnyView {
-        // TODO: Think about how we can show the root in a different coordinators
         factory.buildRoot(stackStorage, self)
     }
     
@@ -39,7 +38,23 @@ extension MainCoordinator {
 
 // MARK: - ListCoordintor
 extension MainCoordinator: ListCoordintor {
-    func openDetails() {
-        stackStorage.stack.append(.nextScreen(text: "Some Text"))
+    func openDetails(category: String, _ content: [AnimalContent]) {
+        stackStorage.stack.append(
+            .animalDetails(category: category, content, self)
+        )
+    }
+}
+
+// MARK: - DetailsCoordinator
+extension MainCoordinator: DetailsCoordinator {
+    func popDetailsModule() {
+        popModule()
+    }
+}
+
+// MARK: - Equtable
+extension MainCoordinator {
+    static func ==(lhs: MainCoordinator, rhs: MainCoordinator) -> Bool {
+        return ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
     }
 }

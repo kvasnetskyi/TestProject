@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-protocol Coordinator: AnyObject {
+protocol Coordinator: AnyObject, Hashable {
     associatedtype Destination: Hashable
     
     var stackStorage: StackStorage<Destination> { get set }
@@ -37,5 +37,12 @@ extension Coordinator {
         guard let index, let parent else { return }
         
         parent.childCoordinators.remove(at: index)
+    }
+}
+
+// MARK: - Hashable
+extension Coordinator {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(ObjectIdentifier(self))
     }
 }

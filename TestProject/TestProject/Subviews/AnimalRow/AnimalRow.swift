@@ -19,9 +19,7 @@ struct AnimalRow: View {
             getContentView()
             Spacer()
         }
-        .background {
-            Color(.white)
-        }
+        .background(Color(.white))
         .overlay {
             if animal.content == nil {
                 getOverlay()

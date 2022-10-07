@@ -46,4 +46,10 @@ extension ListViewModel {
             }
             .store(in: &subscriptions)
     }
+    
+    func rowTapped(_ animal: Animal) {
+        guard let content = animal.content else { return }
+        
+        coordinator?.openDetails(category: animal.title, content)
+    }
 }

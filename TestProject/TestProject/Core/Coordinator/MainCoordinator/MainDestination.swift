@@ -8,5 +8,9 @@
 import Foundation
 
 enum MainDestination: Hashable {
-    case nextScreen(text: String)
+    case animalDetails(
+        category: String,
+        _ content: [AnimalContent],
+        _ coordinator: MainCoordinator
+    )
 }

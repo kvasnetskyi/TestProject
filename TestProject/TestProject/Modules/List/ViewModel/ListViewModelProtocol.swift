@@ -11,4 +11,5 @@ protocol ListViewModelProtocol: ViewModelProtocol {
     var animals: [Animal] { get set }
     
     func onAppear()
+    func rowTapped(_ animal: Animal)
 }

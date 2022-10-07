@@ -23,7 +23,12 @@
 		CE2F8DB928F0055200CB7B43 /* JSONBundleServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2F8DB828F0055200CB7B43 /* JSONBundleServiceProtocol.swift */; };
 		CE2F8DBB28F0055A00CB7B43 /* JSONBundleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2F8DBA28F0055A00CB7B43 /* JSONBundleService.swift */; };
 		CE2F8DC028F008B400CB7B43 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2F8DBF28F008B400CB7B43 /* AppError.swift */; };
-		CE56444728EF51D5006E509B /* MainCoordinatorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE56444628EF51D5006E509B /* MainCoordinatorProtocols.swift */; };
+		CE56444728EF51D5006E509B /* MainCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE56444628EF51D5006E509B /* MainCoordinatorProtocol.swift */; };
+		CE9432DE28F050B9003E90C0 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9432DD28F050B9003E90C0 /* DetailsView.swift */; };
+		CE9432E128F064F9003E90C0 /* AnimalDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9432E028F064F9003E90C0 /* AnimalDetail.swift */; };
+		CE9432E328F06A06003E90C0 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9432E228F06A06003E90C0 /* DetailsViewModel.swift */; };
+		CE9432E528F06A15003E90C0 /* DetailsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9432E428F06A15003E90C0 /* DetailsViewModelProtocol.swift */; };
+		CE9432EA28F075DD003E90C0 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9432E928F075DD003E90C0 /* NavigationBarView.swift */; };
 		CE9C18B228EDC3A700854A99 /* TestProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C18B128EDC3A700854A99 /* TestProjectApp.swift */; };
 		CE9C18B428EDC3A700854A99 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C18B328EDC3A700854A99 /* ListView.swift */; };
 		CE9C18B628EDC3A700854A99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9C18B528EDC3A700854A99 /* Assets.xcassets */; };
@@ -64,7 +69,12 @@
 		CE2F8DB828F0055200CB7B43 /* JSONBundleServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONBundleServiceProtocol.swift; sourceTree = "<group>"; };
 		CE2F8DBA28F0055A00CB7B43 /* JSONBundleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONBundleService.swift; sourceTree = "<group>"; };
 		CE2F8DBF28F008B400CB7B43 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
-		CE56444628EF51D5006E509B /* MainCoordinatorProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorProtocols.swift; sourceTree = "<group>"; };
+		CE56444628EF51D5006E509B /* MainCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorProtocol.swift; sourceTree = "<group>"; };
+		CE9432DD28F050B9003E90C0 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		CE9432E028F064F9003E90C0 /* AnimalDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalDetail.swift; sourceTree = "<group>"; };
+		CE9432E228F06A06003E90C0 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
+		CE9432E428F06A15003E90C0 /* DetailsViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModelProtocol.swift; sourceTree = "<group>"; };
+		CE9432E928F075DD003E90C0 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		CE9C18AE28EDC3A700854A99 /* Test Project Development.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Test Project Development.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9C18B128EDC3A700854A99 /* TestProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestProjectApp.swift; sourceTree = "<group>"; };
 		CE9C18B328EDC3A700854A99 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
@@ -127,6 +137,8 @@
 		CE0D48A028EEEE1700FB0D17 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				CE9432E628F075B4003E90C0 /* NavigationBarView */,
+				CE9432DF28F064EB003E90C0 /* AnimalDetail */,
 				CED64F3F28F01FC600908D74 /* LoadableImage */,
 				CED64F3C28F01C6400908D74 /* AnimalRow */,
 				CED64F3B28F01C5D00908D74 /* LoaderView */,
@@ -237,6 +249,48 @@
 			path = MainModuleFactory;
 			sourceTree = "<group>";
 		};
+		CE9432D928F04F70003E90C0 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				CE9432DB28F04F82003E90C0 /* ViewModel */,
+				CE9432DC28F04F8A003E90C0 /* View */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		CE9432DB28F04F82003E90C0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE9432E428F06A15003E90C0 /* DetailsViewModelProtocol.swift */,
+				CE9432E228F06A06003E90C0 /* DetailsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CE9432DC28F04F8A003E90C0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE9432DD28F050B9003E90C0 /* DetailsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE9432DF28F064EB003E90C0 /* AnimalDetail */ = {
+			isa = PBXGroup;
+			children = (
+				CE9432E028F064F9003E90C0 /* AnimalDetail.swift */,
+			);
+			path = AnimalDetail;
+			sourceTree = "<group>";
+		};
+		CE9432E628F075B4003E90C0 /* NavigationBarView */ = {
+			isa = PBXGroup;
+			children = (
+				CE9432E928F075DD003E90C0 /* NavigationBarView.swift */,
+			);
+			path = NavigationBarView;
+			sourceTree = "<group>";
+		};
 		CE9C18A528EDC3A700854A99 = {
 			isa = PBXGroup;
 			children = (
@@ -300,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				CE22E31928F04EE1006B1CEB /* List */,
+				CE9432D928F04F70003E90C0 /* Details */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -337,7 +392,7 @@
 			isa = PBXGroup;
 			children = (
 				CE0D48B328EF1EAC00FB0D17 /* MainDestination.swift */,
-				CE56444628EF51D5006E509B /* MainCoordinatorProtocols.swift */,
+				CE56444628EF51D5006E509B /* MainCoordinatorProtocol.swift */,
 				CE9C18D928EDDA0900854A99 /* MainCoordinator.swift */,
 			);
 			path = MainCoordinator;
@@ -521,6 +576,7 @@
 			files = (
 				CE9C18D328EDCD6D00854A99 /* AppEnvironment.swift in Sources */,
 				CE9C18DA28EDDA0900854A99 /* MainCoordinator.swift in Sources */,
+				CE9432E128F064F9003E90C0 /* AnimalDetail.swift in Sources */,
 				CED64F4D28F0372A00908D74 /* AnimalContent.swift in Sources */,
 				CE0D489D28EEDE1600FB0D17 /* ListViewModel.swift in Sources */,
 				CE2F8DC028F008B400CB7B43 /* AppError.swift in Sources */,
@@ -531,24 +587,28 @@
 				CE0D48A528EEFE7200FB0D17 /* BaseViewModel.swift in Sources */,
 				CE0D48A228EEEE3500FB0D17 /* LoaderView.swift in Sources */,
 				CED64F4928F0339300908D74 /* ListModelProtocol.swift in Sources */,
+				CE9432E528F06A15003E90C0 /* DetailsViewModelProtocol.swift in Sources */,
 				CED64F2E28F00E1100908D74 /* Assets.swift in Sources */,
 				CE9C18D128EDCD3100854A99 /* AppConfigurationProtocol.swift in Sources */,
 				CE2F8DB928F0055200CB7B43 /* JSONBundleServiceProtocol.swift in Sources */,
 				CE0D48AE28EF0F7000FB0D17 /* StackStorage.swift in Sources */,
+				CE9432DE28F050B9003E90C0 /* DetailsView.swift in Sources */,
 				CE9C18D728EDD1B800854A99 /* Coordinator.swift in Sources */,
 				CE2F8DBB28F0055A00CB7B43 /* JSONBundleService.swift in Sources */,
 				CE0D48A828EF0C2E00FB0D17 /* MainModuleFactory.swift in Sources */,
-				CE56444728EF51D5006E509B /* MainCoordinatorProtocols.swift in Sources */,
+				CE56444728EF51D5006E509B /* MainCoordinatorProtocol.swift in Sources */,
 				CE9C18CF28EDCD0000854A99 /* AppConfiguration.swift in Sources */,
 				CED64F3228F0133900908D74 /* Animal.swift in Sources */,
 				CE9C18B428EDC3A700854A99 /* ListView.swift in Sources */,
 				CED64F2F28F00E1100908D74 /* Localization.swift in Sources */,
 				CED64F4428F032D800908D74 /* ListModel.swift in Sources */,
+				CE9432EA28F075DD003E90C0 /* NavigationBarView.swift in Sources */,
 				CE0D48B428EF1EAC00FB0D17 /* MainDestination.swift in Sources */,
 				CE0D489728EEC26500FB0D17 /* ViewModelProtocol.swift in Sources */,
 				CE9C18DE28EDE06B00854A99 /* View+Extensions.swift in Sources */,
 				CED64F4B28F035AE00908D74 /* ListViewModelProtocol.swift in Sources */,
 				CE0D48AB28EF0CB700FB0D17 /* Container.swift in Sources */,
+				CE9432E328F06A06003E90C0 /* DetailsViewModel.swift in Sources */,
 				CE9C18B228EDC3A700854A99 /* TestProjectApp.swift in Sources */,
 				CE0D48B628EF202500FB0D17 /* ModuleFactoryProtocol.swift in Sources */,
 			);
