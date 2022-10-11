@@ -8,50 +8,40 @@
 import SwiftUI
 import Combine
 
-struct ListView<ViewModel: ListViewModelProtocol, Factory: ModuleFactoryProtocol, Destination: Hashable>: View where Factory.Destination == Destination {
+struct ListView<ViewModel: ListViewModelProtocol>: View {
     // MARK: - Internal Properties
-    let moduleFactory: Factory
-    
     @StateObject var viewModel: ViewModel
-    @StateObject var stackStorage: StackStorage<Destination>
     
     // MARK: - Body
     var body: some View {
-        NavigationStack(path: $stackStorage.stack) {
-            VStack {
-                List($viewModel.animals) { animal in
-                    AnimalRow(animal: animal.wrappedValue)
-                        .listRowSeparator(.hidden)
-                        .listRowBackground(Color.clear)
-                        .listRowInsets(
-                            .init(
-                                top: Constants.rowTopBottomInsets,
-                                leading: Constants.rowSidesInsets,
-                                bottom: Constants.rowTopBottomInsets,
-                                trailing: Constants.rowSidesInsets
-                            )
+        VStack {
+            List($viewModel.animals) { animal in
+                AnimalRow(animal: animal.wrappedValue)
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.clear)
+                    .listRowInsets(
+                        .init(
+                            top: Constants.rowTopBottomInsets,
+                            leading: Constants.rowSidesInsets,
+                            bottom: Constants.rowTopBottomInsets,
+                            trailing: Constants.rowSidesInsets
                         )
-                        .frame(height: Constants.rowHeight)
-                        .onTapGesture {
-                            viewModel.rowTapped(animal.wrappedValue)
-                        }
-                }
-                .scrollContentBackground(.hidden)
-                .edgesIgnoringSafeArea([.leading, .trailing])
-                .listStyle(GroupedListStyle())
-                
-                Spacer()
+                    )
+                    .frame(height: Constants.rowHeight)
+                    .onTapGesture {
+                        viewModel.rowTapped(animal.wrappedValue)
+                    }
             }
-            .background(Color.gray)
-            .subscribeToRenderingStates($viewModel)
-            .navigationDestination(
-                for: Destination.self
-            ) { destination in
-                moduleFactory.build(destination)
-            }
-            .onAppear {
-                viewModel.onAppear()
-            }
+            .scrollContentBackground(.hidden)
+            .edgesIgnoringSafeArea([.leading, .trailing])
+            .listStyle(GroupedListStyle())
+            
+            Spacer()
+        }
+        .background(Color.gray)
+        .subscribeToRenderingStates($viewModel)
+        .onAppear {
+            viewModel.onAppear()
         }
     }
 }

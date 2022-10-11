@@ -6,24 +6,25 @@
 //
 
 import Foundation
+import Combine
 
-final class DetailsViewModel<Coordinator: DetailsCoordinator>: BaseViewModel, DetailsViewModelProtocol {
+final class DetailsViewModel: BaseViewModel, DetailsViewModelProtocol {
     // MARK: - Internal Properties
     let category: String
     
     @Published var facts = [AnimalContent]()
     
+    lazy var transitionPublisher = transition.eraseToAnyPublisher()
+    
     // MARK: - Private Properties
-    private weak var coordinator: Coordinator?
+    private let transition = PassthroughSubject<DetailsTransition, Never>()
     
     // MARK: - Init
     init(
         category: String,
-        _ facts: [AnimalContent],
-        _ coordinator: Coordinator
+        _ facts: [AnimalContent]
     ) {
         self.category = category
-        self.coordinator = coordinator
         self.facts = facts
     }
 }
@@ -31,6 +32,6 @@ final class DetailsViewModel<Coordinator: DetailsCoordinator>: BaseViewModel, De
 // MARK: - Internal Methods
 extension DetailsViewModel {
     func backTapped() {
-        coordinator?.popDetailsModule()
+        transition.send(.backTapped)
     }
 }

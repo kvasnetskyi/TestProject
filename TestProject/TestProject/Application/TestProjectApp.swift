@@ -9,12 +9,19 @@ import SwiftUI
 
 @main
 struct TestProjectApp: App {
+    @StateObject private var navigationStore = NavigationStore()
+    
     private let container: AppContainerProtocol = AppContainer()
-    private let coordinator = MainCoordinator()
+    private let mainRouter = ListRouter()
     
     var body: some Scene {
         WindowGroup {
-            getRoot()
+            NavigationStack(path: $navigationStore.path) {
+                getRoot()
+                    .navigationDestination(for: AnyRouter.self) { router in
+                        router.getRoot(container)
+                    }
+            }
         }
     }
 }
@@ -22,8 +29,8 @@ struct TestProjectApp: App {
 // MARK: - Private Methods
 private extension TestProjectApp {
     func getRoot() -> AnyView {
-        self.coordinator.container = container
+        mainRouter.navigationStore = navigationStore
         
-        return coordinator.start()
+        return mainRouter.getRoot(container)
     }
 }

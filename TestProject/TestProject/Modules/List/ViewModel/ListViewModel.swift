@@ -12,16 +12,14 @@ final class ListViewModel: BaseViewModel, ListViewModelProtocol {
     // MARK: - Internal Properties
     @Published var animals = [Animal]()
     
+    lazy var transitionPublisher = transition.eraseToAnyPublisher()
+    
     // MARK: - Private Properties
-    private weak var coordinator: ListCoordintor?
     private let model: ListModelProtocol
+    private let transition = PassthroughSubject<ListTransition, Never>()
     
     // MARK: - Init
-    init(
-        _ coordinator: ListCoordintor,
-        _ model: ListModelProtocol
-    ) {
-        self.coordinator = coordinator
+    init(_ model: ListModelProtocol) {
         self.model = model
     }
 }
@@ -50,6 +48,8 @@ extension ListViewModel {
     func rowTapped(_ animal: Animal) {
         guard let content = animal.content else { return }
         
-        coordinator?.openDetails(category: animal.title, content)
+        transition.send(
+            .openDetails(category: animal.title, content)
+        )
     }
 }
